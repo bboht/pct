@@ -1,0 +1,18 @@
+services:
+  backend:
+    build:
+      context: ./server
+    image: bboht/pct-backend:latest
+    ports:
+      - "3003:3003"
+    env_file:
+      - ./server/.env
+
+  frontend:
+    build:
+      context: .
+    image: bboht/pct-frontend:latest
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
